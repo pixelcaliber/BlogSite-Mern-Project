@@ -7,6 +7,7 @@ export default function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userCategory, setUserCategory] = useState("");
   const [error, setError] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -17,6 +18,7 @@ export default function Register() {
         username,
         email,
         password,
+        userCategory,
       });
       res.data && window.location.replace("/login");
     } catch (err) {
@@ -47,7 +49,17 @@ export default function Register() {
           className="registerInput"
           placeholder="Enter your password..."
           onChange={(e) => setPassword(e.target.value)}
-        />
+          />
+        <label> Requirements </label>
+        <select
+          className="registerInput"
+          onChange={(e) => setUserCategory(e.target.value)}
+        >
+          <option value=""> Select One </option>
+          <option value="Organiser"> Looking for Sponsors </option>
+          <option value="Sponsor"> Looking for Promotion </option>
+        </select>
+
         <button className="registerButton" type="submit">
           Register
         </button>
@@ -57,7 +69,11 @@ export default function Register() {
           Login
         </Link>
       </button>
-      {error && <span style={{color:"red", marginTop:"10px"}}>Something went wrong!</span>}
+      {error && (
+        <span style={{ color: "red", marginTop: "10px" }}>
+          Something went wrong!
+        </span>
+      )}
     </div>
   );
 }

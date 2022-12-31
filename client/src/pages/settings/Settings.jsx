@@ -9,10 +9,11 @@ export default function Settings() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userCategory, setUserCategory] = useState("");
   const [success, setSuccess] = useState(false);
 
   const { user, dispatch } = useContext(Context);
-  const PF = "http://localhost:5000/images/"
+  const PF = "http://localhost:5000/images/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,6 +23,7 @@ export default function Settings() {
       username,
       email,
       password,
+      userCategory,
     };
     if (file) {
       const data = new FormData();
@@ -53,7 +55,7 @@ export default function Settings() {
           <label>Profile Picture</label>
           <div className="settingsPP">
             <img
-              src={file ? URL.createObjectURL(file) : PF+user.profilePic}
+              src={file ? URL.createObjectURL(file) : PF + user.profilePic}
               alt=""
             />
             <label htmlFor="fileInput">
@@ -83,6 +85,16 @@ export default function Settings() {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
+          <label> Requirements </label>
+          <select
+            className="registerInput"
+            onChange={(e) => setUserCategory(e.target.value)}
+          >
+            <option value=""> Select One </option>
+            <option value="Organiser"> Looking for Sponsors </option>
+            <option value="Sponsor"> Looking for Promotion </option>
+          </select>
+
           <button className="settingsSubmit" type="submit">
             Update
           </button>
