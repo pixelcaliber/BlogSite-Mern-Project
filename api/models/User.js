@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
-      unique: true,
+      // unique: true,
     },
     password: {
       type: String,
@@ -19,6 +19,10 @@ const UserSchema = new mongoose.Schema(
     profilePic: {
       type: String,
       default: "",
+    },
+    userCategory: {
+      type: String,
+      required: true,
     },
   },
   { timestamps: true }
